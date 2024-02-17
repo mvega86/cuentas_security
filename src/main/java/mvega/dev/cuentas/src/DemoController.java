@@ -1,4 +1,4 @@
-package mvega.dev.cuentas.demo;
+package mvega.dev.cuentas.src;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
