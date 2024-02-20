@@ -12,7 +12,7 @@
 	<artifactId>cuentas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cuentas</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Cuentas de la casa</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

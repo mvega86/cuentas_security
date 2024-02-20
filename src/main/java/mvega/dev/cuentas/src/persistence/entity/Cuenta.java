@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "cuentas")
+@Table(name = "cuentas", schema = "cuentas")
 public class Cuenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +32,10 @@ public class Cuenta {
     @JoinColumn(name = "id_frecuencia")
     @JsonIgnore
     private Frecuencia frecuencia;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="id_casa")
+    @JsonIgnore
+    private Casa casa;
 
 
 }

@@ -3,6 +3,7 @@ package mvega.dev.cuentas.auth.persistence.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import mvega.dev.cuentas.src.persistence.entity.Casa;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
+@Table(name = "users", schema = "admin", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"}), @UniqueConstraint(columnNames = {"email"})})
 public class User implements UserDetails {
     @Id
     @GeneratedValue
@@ -39,6 +40,15 @@ public class User implements UserDetails {
     )
     @JsonIgnore
     private List<Role> roles = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "users")
+    @JsonIgnore
+    private List<Casa> casas = new ArrayList<>();
+
+    public void addCasa(Casa casa){
+        casas.add(casa);
+        casa.getUsers().add(this);
+    }
 
     public void addRole(Role role){
         roles.add(role);
