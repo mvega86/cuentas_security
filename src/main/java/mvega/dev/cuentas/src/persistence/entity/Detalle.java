@@ -20,7 +20,8 @@ public class Detalle {
     private Long id;
     @Column(nullable = false)
     private String name;
-    @OneToMany(mappedBy = "detalle")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_concepto")
     @JsonIgnore
-    private List<Cuenta> cuentas = new ArrayList<>();
+    private Concepto concepto;
 }

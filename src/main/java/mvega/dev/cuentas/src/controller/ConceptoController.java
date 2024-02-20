@@ -16,7 +16,6 @@ public class ConceptoController {
         conceptoServicio.adicionar(adConceptoDTO);
         return ResponseEntity.ok("Concepto creado");
     }
-
     @GetMapping
     public ResponseEntity<?> obtenerTodos(){
         return ResponseEntity.ok(conceptoServicio.obtenerTodos());

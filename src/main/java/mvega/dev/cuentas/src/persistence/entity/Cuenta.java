@@ -25,10 +25,6 @@ public class Cuenta {
     @JsonIgnore
     private Concepto concepto;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_detalle")
-    @JsonIgnore
-    private Detalle detalle;
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_frecuencia")
     @JsonIgnore
     private Frecuencia frecuencia;

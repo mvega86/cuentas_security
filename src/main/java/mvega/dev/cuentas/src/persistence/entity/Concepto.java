@@ -23,6 +23,9 @@ public class Concepto {
     @OneToMany(mappedBy = "concepto")
     @JsonIgnore
     private List<Cuenta> cuentas = new ArrayList<>();
+    @OneToMany(mappedBy = "detalle")
+    @JsonIgnore
+    private List<Detalle> detalles = new ArrayList<>();
 
 
 }
