@@ -28,7 +28,7 @@ public class ConceptoController {
     public ResponseEntity<?> obtenerPorNombre(@PathVariable String name){
         return ResponseEntity.ok(conceptoServicio.obtenerPorNombre(name));
     }
-    @PutMapping("/actualizar/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody AdConceptoDTO adConceptoDTO){
         conceptoServicio.actualizar(id, adConceptoDTO);
         return ResponseEntity.ok("Concepto actualizado");

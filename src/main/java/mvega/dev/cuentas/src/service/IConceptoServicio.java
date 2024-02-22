@@ -11,7 +11,7 @@ public interface IConceptoServicio {
     List<ConceptoDTO> obtenerTodos();
 
     ConceptoDTO obtenerPorId(Long id);
-    ConceptoDTO obtenerPorNombre(String name);
+    ConceptoDTO obtenerPorNombre(String nombre);
 
     void eliminar(Long id);
 

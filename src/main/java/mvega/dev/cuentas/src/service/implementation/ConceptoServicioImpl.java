@@ -25,7 +25,7 @@ public class ConceptoServicioImpl implements IConceptoServicio {
     private AdConceptoDTOToConcepto adConceptoDTOToConcepto;
     @Override
     public void adicionar(AdConceptoDTO adConceptoDTO) {
-        if(adConceptoDTO.getName().isBlank()){
+        if(adConceptoDTO.getNombre().isBlank()){
             throw new CuentasException("El nombre no puede estar en blanco.", HttpStatus.BAD_REQUEST);
         }else {
             conceptoRepository.save(adConceptoDTOToConcepto.map(adConceptoDTO));
@@ -37,7 +37,10 @@ public class ConceptoServicioImpl implements IConceptoServicio {
     public List<ConceptoDTO> obtenerTodos() {
         return conceptoRepository.findAll()
                 .stream()
-                .map(concepto -> conceptoToConceptoDTO.map(concepto))
+                .map(concepto -> {
+                    concepto.actualizarTotal();
+                    return conceptoToConceptoDTO.map(concepto);
+                })
                 .toList();
     }
 
@@ -45,6 +48,7 @@ public class ConceptoServicioImpl implements IConceptoServicio {
     public ConceptoDTO obtenerPorId(Long id) {
         Optional<Concepto> optionalConcepto = conceptoRepository.findById(id);
         if(optionalConcepto.isPresent()){
+            optionalConcepto.get().actualizarTotal();
             return conceptoToConceptoDTO.map(optionalConcepto.get());
         }
         throw new CuentasException("No se encontró el concepto.", HttpStatus.NOT_FOUND);
@@ -52,8 +56,9 @@ public class ConceptoServicioImpl implements IConceptoServicio {
 
     @Override
     public ConceptoDTO obtenerPorNombre(String name) {
-        Optional<Concepto> optionalConcepto = conceptoRepository.findByName(name);
+        Optional<Concepto> optionalConcepto = conceptoRepository.findByNombre(name);
         if(optionalConcepto.isPresent()){
+            optionalConcepto.get().actualizarTotal();
             return conceptoToConceptoDTO.map(optionalConcepto.get());
         }
         throw new CuentasException("No se encontró el concepto.", HttpStatus.NOT_FOUND);
@@ -73,12 +78,12 @@ public class ConceptoServicioImpl implements IConceptoServicio {
     public void actualizar(Long id, AdConceptoDTO adConceptoDTO) {
         Optional<Concepto> optionalConcepto = conceptoRepository.findById(id);
         if(optionalConcepto.isPresent()) {
-            if (adConceptoDTO.getName().isBlank()) {
+            if (adConceptoDTO.getNombre().isBlank()) {
                 throw new CuentasException("El nombre no puede estar en blanco.", HttpStatus.BAD_REQUEST);
             }
             else {
                 Concepto concepto = optionalConcepto.get();
-                concepto.setName(adConceptoDTO.getName());
+                concepto.setNombre(adConceptoDTO.getNombre());
                 conceptoRepository.save(concepto);
             }
         }else {

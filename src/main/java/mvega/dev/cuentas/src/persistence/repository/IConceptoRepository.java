@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 @Repository
 public interface IConceptoRepository extends JpaRepository<Concepto, Long> {
-    public Optional<Concepto> findByName(String name);
+    public Optional<Concepto> findByNombre(String nombre);
 }

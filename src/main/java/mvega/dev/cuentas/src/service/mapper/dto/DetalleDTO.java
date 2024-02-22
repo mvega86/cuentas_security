@@ -1,18 +1,21 @@
 package mvega.dev.cuentas.src.service.mapper.dto;
 
 import lombok.*;
+import mvega.dev.cuentas.src.persistence.entity.Concepto;
 import mvega.dev.cuentas.src.persistence.entity.EPrioridad;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class AdConceptoDTO {
+@AllArgsConstructor
+@NoArgsConstructor
+public class DetalleDTO {
+    private Long id;
     private String nombre;
-    private BigDecimal total;
+    private BigDecimal price;
+    private String proveedor;
     private EPrioridad prioridad;
+    private Concepto concepto;
 }

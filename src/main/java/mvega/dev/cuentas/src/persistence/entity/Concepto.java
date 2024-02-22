@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,19 +14,29 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "conceptos", schema = "cuentas", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
+@Table(name = "conceptos", schema = "cuentas", uniqueConstraints = {@UniqueConstraint(columnNames = {"nombre"})})
 public class Concepto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String name;
+    private String nombre;
+    private BigDecimal total;
+    private EPrioridad prioridad;
+
     @OneToMany(mappedBy = "concepto")
     @JsonIgnore
     private List<Cuenta> cuentas = new ArrayList<>();
-    @OneToMany(mappedBy = "detalle")
+
+    @OneToMany(mappedBy = "concepto_detalle")
     @JsonIgnore
     private List<Detalle> detalles = new ArrayList<>();
+
+    public void actualizarTotal(){
+        total = detalles.stream()
+                .map(Detalle::getPrecio) // Obtener el precio de cada detalle
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 
 
 }

@@ -3,8 +3,11 @@ package mvega.dev.cuentas.src.service.mapper.dto;
 import jakarta.persistence.Column;
 import lombok.*;
 import mvega.dev.cuentas.src.persistence.entity.Cuenta;
+import mvega.dev.cuentas.src.persistence.entity.Detalle;
+import mvega.dev.cuentas.src.persistence.entity.EPrioridad;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Component
@@ -15,6 +18,9 @@ import java.util.List;
 @Builder
 public class ConceptoDTO {
     private Long id;
-    private String name;
+    private String nombre;
+    private BigDecimal total;
+    private EPrioridad prioridad;
     private List<Cuenta> cuentas;
+    private List<Detalle> detalles;
 }

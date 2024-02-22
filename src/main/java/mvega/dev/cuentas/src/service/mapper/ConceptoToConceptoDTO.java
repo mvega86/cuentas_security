@@ -15,8 +15,11 @@ public class ConceptoToConceptoDTO implements IMapper<Concepto, ConceptoDTO> {
     public ConceptoDTO map(Concepto in) {
         return new ConceptoDTO(
                 in.getId(),
-                in.getName(),
-                in.getCuentas()
+                in.getNombre(),
+                in.getTotal(),
+                in.getPrioridad(),
+                in.getCuentas(),
+                in.getDetalles()
         );
     }
 }

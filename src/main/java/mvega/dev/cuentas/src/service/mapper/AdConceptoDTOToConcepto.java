@@ -7,6 +7,7 @@ import mvega.dev.cuentas.src.service.mapper.dto.AdConceptoDTO;
 import mvega.dev.cuentas.src.service.mapper.dto.ConceptoDTO;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 @Component
@@ -18,7 +19,10 @@ public class AdConceptoDTOToConcepto implements IMapper<AdConceptoDTO, Concepto>
     public Concepto map(AdConceptoDTO in) {
         return new Concepto(
                 null,
-                in.getName(),
+                in.getNombre(),
+                BigDecimal.valueOf(0),
+                in.getPrioridad(),
+                new ArrayList<>(),
                 new ArrayList<>()
         );
     }
