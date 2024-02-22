@@ -16,18 +16,7 @@ import java.util.List;
 @Builder
 @Table(
         name = "casas",
-        schema = "cuentas",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        columnNames = {
-                        "calle",
-                        "numero",
-                        "escalera",
-                        "piso",
-                        "letra"
-                        }
-                )
-        })
+        schema = "cuentas")
 public class Casa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +26,8 @@ public class Casa {
     private String escalera;
     private String piso;
     private String letra;
+    private String ciudad;
+    private String provincia;
 
     @OneToMany(mappedBy = "casa")
     @JsonIgnore

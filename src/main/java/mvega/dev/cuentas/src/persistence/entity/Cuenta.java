@@ -18,16 +18,18 @@ public class Cuenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private BigDecimal total;
     private Timestamp fecha;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_concepto")
     @JsonIgnore
     private Concepto concepto;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_frecuencia")
     @JsonIgnore
     private Frecuencia frecuencia;
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="id_casa")
     @JsonIgnore
