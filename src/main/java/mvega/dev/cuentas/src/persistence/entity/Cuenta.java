@@ -19,6 +19,8 @@ public class Cuenta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Timestamp fecha;
+    private BigDecimal cantidad;
+    private BigDecimal total;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_concepto")
@@ -34,6 +36,12 @@ public class Cuenta {
     @JoinColumn(name="id_casa")
     @JsonIgnore
     private Casa casa;
+
+    public void actualizarTotal(){
+        total = concepto.getDetalles().stream()
+                .map(Detalle::getPrecio) // Obtener el precio de cada detalle
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 
 
 }

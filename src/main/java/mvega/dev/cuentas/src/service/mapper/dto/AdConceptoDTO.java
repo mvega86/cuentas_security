@@ -13,6 +13,5 @@ import java.math.BigDecimal;
 @Builder
 public class AdConceptoDTO {
     private String nombre;
-    private BigDecimal total;
     private EPrioridad prioridad;
 }

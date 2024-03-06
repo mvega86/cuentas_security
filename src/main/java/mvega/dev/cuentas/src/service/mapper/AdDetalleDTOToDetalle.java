@@ -13,6 +13,7 @@ public class AdDetalleDTOToDetalle implements IMapper<AdDetalleDTO, Detalle> {
         return new Detalle(
                 null,
                 in.getNombre(),
+                in.getMedida(),
                 in.getPrecio(),
                 in.getProveedor(),
                 in.getPrioridad(),

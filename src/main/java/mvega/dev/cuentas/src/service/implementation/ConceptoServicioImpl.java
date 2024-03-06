@@ -37,10 +37,7 @@ public class ConceptoServicioImpl implements IConceptoServicio {
     public List<ConceptoDTO> obtenerTodos() {
         return conceptoRepository.findAll()
                 .stream()
-                .map(concepto -> {
-                    concepto.actualizarTotal();
-                    return conceptoToConceptoDTO.map(concepto);
-                })
+                .map(concepto -> conceptoToConceptoDTO.map(concepto))
                 .toList();
     }
 
@@ -48,7 +45,6 @@ public class ConceptoServicioImpl implements IConceptoServicio {
     public ConceptoDTO obtenerPorId(Long id) {
         Optional<Concepto> optionalConcepto = conceptoRepository.findById(id);
         if(optionalConcepto.isPresent()){
-            optionalConcepto.get().actualizarTotal();
             return conceptoToConceptoDTO.map(optionalConcepto.get());
         }
         throw new CuentasException("No se encontró el concepto.", HttpStatus.NOT_FOUND);
@@ -58,7 +54,6 @@ public class ConceptoServicioImpl implements IConceptoServicio {
     public ConceptoDTO obtenerPorNombre(String name) {
         Optional<Concepto> optionalConcepto = conceptoRepository.findByNombre(name);
         if(optionalConcepto.isPresent()){
-            optionalConcepto.get().actualizarTotal();
             return conceptoToConceptoDTO.map(optionalConcepto.get());
         }
         throw new CuentasException("No se encontró el concepto.", HttpStatus.NOT_FOUND);

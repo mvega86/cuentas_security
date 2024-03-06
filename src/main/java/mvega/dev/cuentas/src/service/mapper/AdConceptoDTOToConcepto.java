@@ -20,7 +20,6 @@ public class AdConceptoDTOToConcepto implements IMapper<AdConceptoDTO, Concepto>
         return new Concepto(
                 null,
                 in.getNombre(),
-                BigDecimal.valueOf(0),
                 in.getPrioridad(),
                 new ArrayList<>(),
                 new ArrayList<>()

@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class AdDetalleDTO {
     private String nombre;
+    private String medida;
     private BigDecimal precio;
     private String proveedor;
     private EPrioridad prioridad;

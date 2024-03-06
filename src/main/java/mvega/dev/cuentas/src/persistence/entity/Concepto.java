@@ -21,7 +21,6 @@ public class Concepto {
     private Long id;
     @Column(nullable = false)
     private String nombre;
-    private BigDecimal total;
     private EPrioridad prioridad;
 
     @OneToMany(mappedBy = "concepto")
@@ -32,11 +31,7 @@ public class Concepto {
     @JsonIgnore
     private List<Detalle> detalles = new ArrayList<>();
 
-    public void actualizarTotal(){
-        total = detalles.stream()
-                .map(Detalle::getPrecio) // Obtener el precio de cada detalle
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-    }
+
 
 
 }

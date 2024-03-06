@@ -19,7 +19,6 @@ import java.util.List;
 public class ConceptoDTO {
     private Long id;
     private String nombre;
-    private BigDecimal total;
     private EPrioridad prioridad;
     private List<Cuenta> cuentas;
     private List<Detalle> detalles;

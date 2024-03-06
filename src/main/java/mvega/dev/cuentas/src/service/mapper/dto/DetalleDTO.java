@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 public class DetalleDTO {
     private Long id;
     private String nombre;
+    private String medida;
     private BigDecimal price;
     private String proveedor;
     private EPrioridad prioridad;

@@ -12,6 +12,7 @@ public class DetalleToDetalleDTO implements IMapper<Detalle, DetalleDTO> {
         return new DetalleDTO(
                 in.getId(),
                 in.getNombre(),
+                in.getMedida(),
                 in.getPrecio(),
                 in.getProveedor(),
                 in.getPrioridad(),
